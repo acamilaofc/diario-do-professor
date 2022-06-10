@@ -1,0 +1,25 @@
+-- CreateTable
+CREATE TABLE "Aluno" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nome" TEXT NOT NULL,
+    "sobrenome" TEXT NOT NULL,
+    "idade" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Faltas" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "presenca" BOOLEAN NOT NULL,
+    "data" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "alunoId" INTEGER NOT NULL,
+    CONSTRAINT "Faltas_alunoId_fkey" FOREIGN KEY ("alunoId") REFERENCES "Aluno" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Notas" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "avaliacao" TEXT NOT NULL,
+    "nota" DECIMAL NOT NULL,
+    "alunoId" INTEGER NOT NULL,
+    CONSTRAINT "Notas_alunoId_fkey" FOREIGN KEY ("alunoId") REFERENCES "Aluno" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
